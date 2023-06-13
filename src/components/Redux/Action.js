@@ -23,7 +23,7 @@ export const getTodo=()=>{
 }
 export const postTodos = (data)=>{
     return (dispatch)=>{
-        axios.post(`${URL} /tasks`,{
+        axios.post(`${URL}/tasks`,{
             name:data,
             // complete:false
         }).then((res)=>{
@@ -51,7 +51,7 @@ export const toggleMark=(id)=>{
 
 export const searchTasks =  (searchQuery) => {
     return (dispatch)=>{
-        axios.get(`${URL}/search?query=${searchQuery}`)
+        axios.get(`${URL}/tasks/search?query=${searchQuery}`)
         .then((res)=> {
           
             return dispatch({type:"FILTER",Payload:res.data})

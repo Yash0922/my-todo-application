@@ -8,7 +8,7 @@ const initialState = {
 
 
 export const Reducer =(state=initialState,action)=>{
-
+console.log(action.Payload,action.type)
     switch(action.type){
         case TODO:
            return {
