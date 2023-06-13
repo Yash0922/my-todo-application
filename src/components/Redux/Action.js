@@ -9,9 +9,11 @@ export const todoAction=(data)=>{
         
     }
 }
+const URL  =  process.env.REACT_APP_BACKEND_URL;
+console.log("URL",URL)
 export const getTodo=()=>{
     return (dispatch)=>{
-        axios.get(`http://localhost:3001/tasks`)
+        axios.get(`${URL}/tasks`)
         .then((res)=> {
             return dispatch(todoAction(res.data))
             
@@ -21,7 +23,7 @@ export const getTodo=()=>{
 }
 export const postTodos = (data)=>{
     return (dispatch)=>{
-        axios.post(`http://localhost:3001/tasks`,{
+        axios.post(`${URL} /tasks`,{
             name:data,
             // complete:false
         }).then((res)=>{
@@ -32,7 +34,7 @@ export const postTodos = (data)=>{
 
 export const deleteTodo=(id)=>{
     return (dispatch)=>{
-        axios.delete(`http://localhost:3001/tasks/${id}`)
+        axios.delete(`${URL}/tasks/${id}`)
         .then((res)=> {
            return dispatch(getTodo())})
         
@@ -40,7 +42,7 @@ export const deleteTodo=(id)=>{
 }
 export const toggleMark=(id)=>{
     return (dispatch)=>{
-        axios.patch(`http://localhost:3001/tasks/${id}`,{
+        axios.patch(`${URL}/tasks/${id}`,{
         })
         .then((res )=>{
            return dispatch(getTodo())})
@@ -49,7 +51,7 @@ export const toggleMark=(id)=>{
 
 export const searchTasks =  (searchQuery) => {
     return (dispatch)=>{
-        axios.get(`http://localhost:3001/tasks/search?query=${searchQuery}`)
+        axios.get(`${URL}/search?query=${searchQuery}`)
         .then((res)=> {
           
             return dispatch({type:"FILTER",Payload:res.data})
